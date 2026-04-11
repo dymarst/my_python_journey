@@ -1,3 +1,4 @@
+from datetime import datetime
 from user.menu import menu_user
 from adm.menu import menu_admin
 def login(cursor, db):
@@ -10,6 +11,8 @@ def login(cursor, db):
         cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
         hasil = cursor.fetchone()
         if hasil:
+            cursor.execute("UPDATE users SET last_login = %s WHERE username = %s" , (datetime.now(), username))
+            db.commit()
             if username == "dymarr":
                 print("kamu adalah admin")
                 menu_admin(cursor, db)

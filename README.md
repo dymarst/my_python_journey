@@ -14,7 +14,7 @@ Proyek ini adalah aplikasi CLI sederhana untuk belajar Python dan manajemen peng
   - menghapus akun
   - mengirim pertanyaan ke admin
 - Menu admin untuk:
-  - melihat semua pengguna
+  - melihat semua pengguna (dengan info last login)
   - menghapus user berdasarkan ID
   - mengakses menu user sebagai admin
   - melihat dan menjawab pertanyaan pengguna
@@ -47,19 +47,11 @@ Proyek ini adalah aplikasi CLI sederhana untuk belajar Python dan manajemen peng
    pip install mysql-connector-python
    ```
 2. Jalankan MySQL/MariaDB dan buat database `test`.
-3. Eksekusi `test.sql` untuk membuat tabel `users` dan data awal:
-   - tabel `users` dengan kolom: `id`, `username`, `password`, `telepon`, `hobi`
+3. Eksekusi `test.sql` untuk membuat tabel `users`, `ask` dan data awal:
+   - tabel `users` dengan kolom: `id`, `username`, `password`, `telepon`, `hobi`, `last_login`
+   - tabel `ask` dengan kolom: `id`, `username`, `pertanyaan`, `jawaban`
    - pengguna admin default: `dymarr`
-4. Jika belum ada, buat juga tabel `ask` untuk menyimpan pertanyaan pengguna:
-   ```sql
-   CREATE TABLE ask (
-     id INT AUTO_INCREMENT PRIMARY KEY,
-     username VARCHAR(54) NOT NULL,
-     pertanyaan TEXT NOT NULL,
-     jawaban TEXT
-   );
-   ```
-5. Sesuaikan koneksi database di `database/db.py` jika username, password, host, atau nama database berbeda.
+4. Sesuaikan koneksi database di `database/db.py` jika username, password, host, atau nama database berbeda.
 
 ## Menjalankan aplikasi
 

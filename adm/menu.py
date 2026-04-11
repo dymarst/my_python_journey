@@ -7,11 +7,11 @@ def menu_admin(cursor, db):
 
     while True:
         print("\n === MENU ADMIN ===")
-        print("1. daftar semua pengguna")
-        print("2. hapus akun user (gunakan ID)")
-        print("3. login sebagai user")
-        print("4. lihat pertanyaan")
-        print("5. jawab pertanyaan")
+        print("1. View all users")
+        print("2. Delete user")
+        print("3. Login as User")
+        print("4. View questions")
+        print("5. Answer question")
         pilihan = input("mau apa? : ")
         
         if pilihan == "1":
