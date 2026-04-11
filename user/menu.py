@@ -1,4 +1,5 @@
 from user.profile import lihat_data, isi_telepon, isi_hobi, del_akun, ganti_password
+from user.user_questions import ask
 
 def menu_user(cursor, db, username):
     print("berhasil login")
@@ -9,6 +10,7 @@ def menu_user(cursor, db, username):
         print("3. isi hobi")
         print("4. hapus akun")
         print("5. ganti password")
+        print("6. ask to admin")
         print("ketik apapun untuk keluar")
         chose = input("mau apa? :")
         if chose == "1":
@@ -22,5 +24,7 @@ def menu_user(cursor, db, username):
             break
         elif chose == "5":
             ganti_password(cursor, db, username)
+        elif chose == "6":
+            ask(cursor, db, username)
         else:
             break

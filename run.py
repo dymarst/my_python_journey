@@ -1,4 +1,4 @@
-from db import connect_db
+from database.db import connect_db
 from author.login import login
 from author.register import register
 
