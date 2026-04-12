@@ -7,8 +7,8 @@ def all_data(cursor):
         return
 
     for user in users:
-        print(f"\nID       : {user[0]}")
-        print(f"Username : {user[1]}")
-        print(f"No HP    : {user[2] if user[2] else 'Tidak ada'}")
-        print(f"Hobi     : {user[3] if user[3] else 'Tidak ada'}")
-        print(f"last login : {user[4]}")
+        print(f"\nID       : {user['id']}")
+        print(f"Username : {user['username']}")
+        print(f"No HP    : {user['telepon'] if user['telepon'] else 'Tidak ada'}")
+        print(f"Hobi     : {user['hobi'] if user['hobi'] else 'Tidak ada'}")
+        print(f"last login : {user['last_login']}")

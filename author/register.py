@@ -1,3 +1,5 @@
+import bcrypt
+
 def register(cursor, db):
     username = input("Masukkan username: ").strip()
     password = input("Masukkan password: ").strip()
@@ -7,7 +9,8 @@ def register(cursor, db):
     if cursor.fetchone():            
         print("Username sudah digunakan, silakan pilih username lain.\n")
     else:
-        cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
+        hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+        cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, hashed))
         db.commit()
 
         print("Akun berhasil dibuat!")

@@ -1,6 +1,7 @@
 from database.db import connect_db
 from author.login import login
 from author.register import register
+import bcrypt
 
 def main():
     db = connect_db()
@@ -8,7 +9,7 @@ def main():
     if db is None:
         print("Program dihentikan karena database tidak connect")
         return
-    cursor = db.cursor()
+    cursor = db.cursor(dictionary=True)
     print("1. login akun")
     print("2. daftar akun")
     pilihan = input("mau apa? (1/2):")

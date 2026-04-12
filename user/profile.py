@@ -1,10 +1,12 @@
+import bcrypt
+
 def lihat_data(cursor, username):
     cursor.execute("SELECT username, telepon, hobi FROM users WHERE username=%s", (username,))
     user = cursor.fetchone()
 
-    print(f"\nUsername : {user[0]}")
-    print(f"No HP    : {user[1] if user[1] else 'Tidak ada'}")
-    print(f"Hobi     : {user[2] if user[2] else 'Tidak ada'}")
+    print(f"\nUsername : {user['username']}")
+    print(f"No HP    : {user['telepon'] if user['telepon'] else 'Tidak ada'}")
+    print(f"Hobi     : {user['hobi'] if user['hobi'] else 'Tidak ada'}")
 
 def isi_telepon(cursor, db, username):
     telepon = input("Masukkan No HP: ").strip()
@@ -30,19 +32,21 @@ def del_akun(cursor, db, username):
         print("Batal menghapus akun.")
 
 def ganti_password(cursor, db, username):
-    cursor.execute("SELECT password FROM users WHERE username=%s", (username,))
-    password = cursor.fetchone()
-    password_lama = input("password lama : ")
-    if password_lama == password[0]:
-        password_baru = input("password baru : ")
+    cursor.execute("SELECT * FROM users WHERE username=%s", (username,))
+    hasil = cursor.fetchone()
+    password = hasil['password']
+    old_password = input("password lama : ")
+    if bcrypt.checkpw(old_password.encode(), password.encode()):
+        new_password = input("password baru : ")
+        hashed_new = bcrypt.hashpw(new_password.encode(), bcrypt.gensalt())
         confirm = input("Apakah yakin ingin mengganti password? (y/n): ").strip().lower()
         if confirm == "y":
-            cursor.execute("UPDATE users SET password=%s WHERE username=%s", (password_baru, username))
+            cursor.execute("UPDATE users SET password=%s WHERE username=%s", (hashed_new, username))
             db.commit()
-            
+        
             print("Password berhasil diganti")
         else:
             print("Batal menghapus akun.")
-            print(f"password yang baru {password_baru}")
-    else:
+            print(f"password yang baru {new_password}")
+    else: 
         print("password salah!")

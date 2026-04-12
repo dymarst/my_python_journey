@@ -6,10 +6,10 @@ def show_questions(cursor, db):
         print("tidak ada pertanyaan")
 
     for pertanyaan in pertanyaan_all:
-        print(f"\nID : {pertanyaan[0]}")
-        print(f"Username : {pertanyaan[1]}")
-        print(f"Pertanyaan : {pertanyaan[2]}")
-        print(f"Jawaban : {pertanyaan[3] if pertanyaan[3] else "belum di jawab"}")
+        print(f"\nID : {pertanyaan['id']}")
+        print(f"Username : {pertanyaan['username']}")
+        print(f"Pertanyaan : {pertanyaan['pertanyaan']}")
+        print(f"Jawaban : {pertanyaan['jawaban'] if pertanyaan['jawaban'] else "belum di jawab"}")
 
 def answer(cursor, db):
     id_pertanyaan = input("masukan id pertanyaan : ")
