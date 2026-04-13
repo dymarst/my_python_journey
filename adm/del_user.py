@@ -5,12 +5,12 @@ def hapus_user(cursor, db):
         print("ID harus berupa angka.")
         return
 
-    cursor.execute("SELECT username FROM users WHERE id=%s", (id_user,))
+    cursor.execute("SELECT * FROM users WHERE id=%s", (id_user,))
     user = cursor.fetchone()
-    if not user:
+    if user is None:
         print("User dengan ID tersebut tidak ditemukan.")
         return
 
     cursor.execute("DELETE FROM users WHERE id=%s", (id_user,))
     db.commit()
-    print(f"User '{user[0]}' dengan ID {id_user} berhasil dihapus.")
+    print(f"User '{user['username']}' dengan ID {id_user} berhasil dihapus.")

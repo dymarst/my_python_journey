@@ -96,7 +96,6 @@ python run.py
 
 ## Catatan
 
-- Admin dikenali saat login dengan username `dymarr`.
 - Data pengguna tersimpan di MySQL/MariaDB dengan tabel `users` dan `ask`.
 - Password dienkripsi menggunakan bcrypt dengan salt generation untuk keamanan.
 - Setiap login yang berhasil mencatat waktu terakhir login (`last_login`).

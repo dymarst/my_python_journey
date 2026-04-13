@@ -11,7 +11,6 @@ def connect_db():
         )
 
         if db.is_connected():
-            print("Koneksi ke MySQL berhasil")
             return db
 
     except Error as e:

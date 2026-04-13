@@ -19,11 +19,14 @@ def login(cursor, db):
                 db.commit()
                 if hasil['role'] == 'admin':
                     print("kamu adalah admin")
-                    menu_admin(cursor, db)
+                    menu_admin()
                 else:
-                    menu_user(cursor, db, username)
+                    menu_user(username)
                 return
             else:
                 attempt += 1
                 print(f"username atau password salah, sisa percobaan({attempt}/3)")
+        else:
+            attempt += 1
+            print(f"username atau password salah, sisa percobaan({attempt}/3)")
     print("Silahkan buat akun jika lupa password lama")

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2026 at 04:45 PM
+-- Generation Time: Apr 12, 2026 at 02:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -29,17 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `ask` (
   `id` int(11) NOT NULL,
-  `username` varchar(12) NOT NULL,
+  `username` varchar(22) NOT NULL,
   `pertanyaan` text NOT NULL,
   `jawaban` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `ask`
---
-
-INSERT INTO `ask` (`id`, `username`, `pertanyaan`, `jawaban`) VALUES
-(2, 'dymarr', 'kapan berubahnya kalo begini', 'tolol anj bego');
 
 -- --------------------------------------------------------
 
@@ -49,20 +42,13 @@ INSERT INTO `ask` (`id`, `username`, `pertanyaan`, `jawaban`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `username` varchar(54) NOT NULL,
-  `password` varchar(54) NOT NULL,
-  `telepon` varchar(12) NOT NULL,
-  `hobi` varchar(54) NOT NULL,
-  `last_login` datetime DEFAULT NULL
+  `username` varchar(16) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(11) NOT NULL DEFAULT 'user',
+  `telepon` varchar(16) NOT NULL,
+  `hobi` varchar(16) NOT NULL,
+  `last_login` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `telepon`, `hobi`, `last_login`) VALUES
-(2, 'dymarr', 'makanlele', 'd', 'olahraga', '2026-04-11 21:29:53'),
-(4, 'loke', 'awd', '082113368520', 'minum', NULL);
 
 --
 -- Indexes for dumped tables
@@ -88,13 +74,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `ask`
 --
 ALTER TABLE `ask`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

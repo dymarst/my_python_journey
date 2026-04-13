@@ -10,8 +10,8 @@ def main():
         print("Program dihentikan karena database tidak connect")
         return
     cursor = db.cursor(dictionary=True)
-    print("1. login akun")
-    print("2. daftar akun")
+    print("1. login")
+    print("2. daftar")
     pilihan = input("mau apa? (1/2):")
     if pilihan == "1":
         login(cursor, db)
