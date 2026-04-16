@@ -1,39 +1,37 @@
 import bcrypt
+from database.database import Database
 
-def lihat_data(cursor, username):
-    cursor.execute("SELECT username, telepon, hobi FROM users WHERE username=%s", (username,))
-    user = cursor.fetchone()
+database = Database()
+
+def lihat_data(username):
+    user = database.select("users", "username", username)
 
     print(f"\nUsername : {user['username']}")
     print(f"No HP    : {user['telepon'] if user['telepon'] else 'Tidak ada'}")
     print(f"Hobi     : {user['hobi'] if user['hobi'] else 'Tidak ada'}")
 
-def isi_telepon(cursor, db, username):
+def isi_telepon(username):
     telepon = input("Masukkan No HP: ").strip()
-    cursor.execute("UPDATE users SET telepon=%s WHERE username=%s", (telepon, username))
-    db.commit()
+    database.update("users", "telepon", "username", telepon, username)
     print(f"berhasil menambahkan nomer telepon {telepon}")
 
-def isi_hobi(cursor, db, username):
+def isi_hobi(username):
     hobi = input("Masukkan HOBI: ").strip()
-    cursor.execute("UPDATE users SET hobi=%s WHERE username=%s", (hobi, username))
-    db.commit()
+    database.update("users", "hobi", "username", hobi, username)
     print(f"berhasil menambahkan hobi {hobi}")
 
-def del_akun(cursor, db, username):
+def del_akun(username):
     confirm = input("Apakah yakin ingin menghapus akun? (y/n): ").strip().lower()
     if confirm == "y":
-        cursor.execute("DELETE FROM users WHERE username=%s", (username,))
-        db.commit()
+        database.delete("users", "username", username)
         
         print("Akun berhasil dihapus!")
         return True
     else:
         print("Batal menghapus akun.")
 
-def ganti_password(cursor, db, username):
-    cursor.execute("SELECT * FROM users WHERE username=%s", (username,))
-    hasil = cursor.fetchone()
+def ganti_password(username):
+    hasil = database.select("users", "username", username)
     password = hasil['password']
     old_password = input("password lama : ")
     if bcrypt.checkpw(old_password.encode(), password.encode()):
@@ -41,9 +39,8 @@ def ganti_password(cursor, db, username):
         hashed_new = bcrypt.hashpw(new_password.encode(), bcrypt.gensalt())
         confirm = input("Apakah yakin ingin mengganti password? (y/n): ").strip().lower()
         if confirm == "y":
-            cursor.execute("UPDATE users SET password=%s WHERE username=%s", (hashed_new, username))
-            db.commit()
-        
+            database.update("users", "password", "username", hashed_new, username)
+  
             print("Password berhasil diganti")
         else:
             print("Batal menghapus akun.")

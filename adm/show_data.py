@@ -1,7 +1,9 @@
-def all_data(cursor):
-    cursor.execute("SELECT id, username, telepon, hobi, last_login FROM users")
-    users = cursor.fetchall()
+from database.database import Database
 
+database = Database()
+
+def all_data():
+    users = database.select_all("users")
     if not users:
         print("Belum ada data pengguna.")
         return

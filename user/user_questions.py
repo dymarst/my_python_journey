@@ -1,12 +1,14 @@
-def ask(cursor, db, username):
+from database.database import Database
+
+database = Database()
+
+def ask(username):
     pertanyaan = input("masukan pertanyaan : ")
-    cursor.execute("INSERT INTO ask (username, pertanyaan) VALUES (%s, %s)", (username, pertanyaan))
-    db.commit()
+    database.insert("ask", {"username" : username, "pertanyaan" : pertanyaan})
     print(f"kamu berhasil nanya {pertanyaan}")
 
-def cek_pertanyaan(cursor, username):
-    cursor.execute("SELECT pertanyaan, jawaban FROM ask WHERE username = %s", (username,))
-    user = cursor.fetchone()
+def cek_pertanyaan(username):
+    user = database.select("ask", "username", username)
 
     if user:
         print(f"\nUsername : {username}")

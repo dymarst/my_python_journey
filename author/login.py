@@ -1,22 +1,21 @@
 from datetime import datetime
 from user.menu import menu_user
 from adm.menu import menu_admin
+from database.database import Database
 import bcrypt
 
-def login(cursor, db):
+def login():
+    database = Database()
     max_attempt = 3
     attempt = 0
     while max_attempt > attempt:
         username = input("Masukkan username: ")
         password = input("Masukkan password: ")
-
-        cursor.execute("SELECT * FROM users WHERE username = %s", (username,))
-        hasil = cursor.fetchone()
+        hasil = database.select("users", "username", username)
         if hasil:
             stored_hash = hasil['password']
             if bcrypt.checkpw(password.encode(), stored_hash.encode()):
-                cursor.execute("UPDATE users SET last_login = %s WHERE username = %s" , (datetime.now(), username))
-                db.commit()
+                database.update("users", "last_login", "username", datetime.now(), username)
                 if hasil['role'] == 'admin':
                     print("kamu adalah admin")
                     menu_admin()

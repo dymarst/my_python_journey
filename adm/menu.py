@@ -6,8 +6,6 @@ from database.db import connect_db
 
 def menu_admin():
     while True:
-        db = connect_db()
-        cursor = db.cursor(dictionary=True)
         print("\n === MENU ADMIN ===")
         print("1. View all users")
         print("2. Delete user")
@@ -18,20 +16,16 @@ def menu_admin():
         pilihan = input("mau apa? : ")
         
         if pilihan == "1":
-            all_data(cursor)
+            all_data()
         elif pilihan == "2":
-            hapus_user(cursor, db)
+            hapus_user()
         elif pilihan == "3":
             menu_user("dymarr")
         elif pilihan == "4":
-            show_questions(cursor, db)
+            show_questions()
         elif pilihan == "5":
-            answer(cursor, db)
+            answer()
         elif pilihan == "6":
-            del_questions(cursor, db)
-        elif pilihan == "7":
-            cursor.execute("SELECT * FROM ask")
-            d = cursor.fetchall()
-            print(f"{d}")
+            del_questions()
         else:
             break

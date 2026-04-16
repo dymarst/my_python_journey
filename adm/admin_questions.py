@@ -1,6 +1,10 @@
-def show_questions(cursor, db):
-    cursor.execute("SELECT id, username, pertanyaan, jawaban FROM ask")
-    pertanyaan_all = cursor.fetchall()
+from database.database import Database
+
+database = Database()
+
+def show_questions():
+
+    pertanyaan_all = database.select_all("ask")
 
     if not pertanyaan_all:
         print("tidak ada pertanyaan")
@@ -11,25 +15,22 @@ def show_questions(cursor, db):
         print(f"Pertanyaan : {pertanyaan['pertanyaan']}")
         print(f"Jawaban : {pertanyaan['jawaban'] if pertanyaan['jawaban'] else 'belum di jawab'}")
 
-def answer(cursor, db):
+def answer():
     id_pertanyaan = input("masukan id pertanyaan : ")
     jawaban = input("masukan jawaban : ")
-    cursor.execute("UPDATE ask set jawaban = %s WHERE id = %s", (jawaban, id_pertanyaan))
-    db.commit()
+    database.update("ask", "jawaban", "username", jawaban, id_pertanyaan)
     print(f"berhasil jawab pertanyaan id : {id_pertanyaan}")
 
-def del_questions(cursor, db):
+def del_questions():
     try:
         id_pertanyaan = int(input("hapus pertanyaan (id) :"))
     except ValueError:
         print("ID harus berupa angka")
 
-    cursor.execute("SELECT * FROM ask WHERE id = %s", (id_pertanyaan,))
-    pertanyaan = cursor.fetchone()
+    pertanyaan = database.select("ask", "id", id_pertanyaan)
     if pertanyaan is None:
         print("id pertanyaan tidak ditemukan")
         return
 
-    cursor.execute("DELETE FROM ask WHERE id = %s", (id_pertanyaan,))
-    db.commit()
+    database.delete("ask", "id", id_pertanyaan)
     print(f"kamu telah menghapus pertanyaan id : {id_pertanyaan}")
