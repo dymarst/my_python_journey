@@ -1,11 +1,10 @@
 from datetime import datetime
 from user.menu import menu_user
 from adm.menu import menu_admin
-from database.database import Database
+import database.crud as database
 import bcrypt
 
 def login():
-    database = Database()
     max_attempt = 3
     attempt = 0
     while max_attempt > attempt:

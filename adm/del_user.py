@@ -1,6 +1,4 @@
-from database.database import Database
-
-database = Database()
+import database.crud as database
 
 def hapus_user():
 

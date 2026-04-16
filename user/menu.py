@@ -12,7 +12,7 @@ def menu_user(username):
         print("5. ganti password")
         print("6. ask to admin")
         print("7. lihat pertanyaan")
-        print("ketik apapun untuk keluar")
+        print("0. exit")
         chose = input("mau apa? :")
         if chose == "1":
             lihat_data(username)

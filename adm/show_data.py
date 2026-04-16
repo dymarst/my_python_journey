@@ -1,6 +1,4 @@
-from database.database import Database
-
-database = Database()
+import database.crud as database
 
 def all_data():
     users = database.select_all("users")

@@ -1,7 +1,5 @@
 import bcrypt
-from database.database import Database
-
-database = Database()
+import database.crud as database
 
 def lihat_data(username):
     user = database.select("users", "username", username)

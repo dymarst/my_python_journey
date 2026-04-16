@@ -1,8 +1,7 @@
 import bcrypt
-from database.database import Database
+import database.crud as database
 
 def register():
-    database = Database()
     username = input("Masukkan username: ").strip()
     password = input("Masukkan password: ").strip()
     
