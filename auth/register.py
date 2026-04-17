@@ -10,6 +10,6 @@ def register():
     if user:            
         print("Username sudah digunakan, silakan pilih username lain.\n")
     else:
-        hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+        hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
         database.insert("users", {"username" : username, "password" : hashed})
         print("Akun berhasil dibuat!")

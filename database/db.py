@@ -1,18 +1,16 @@
-import mysql.connector
-from mysql.connector import Error
+import psycopg2
 
 def connect_db():
     try:
-        db = mysql.connector.connect(
+        db = psycopg2.connect(
             host="127.0.0.1",
-            user="root",
-            password="",
-            database="test"
-        )
+            user="postgres",
+            password="dymarr",
+            database="test",
+            port=5432
+        )           
+        return db
 
-        if db.is_connected():
-            return db
-
-    except Error as e:
-        print("Koneksi gagal:", e)
+    except:
+        print("Gagal terhubung ke database.")
         return None

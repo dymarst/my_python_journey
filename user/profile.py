@@ -34,7 +34,7 @@ def ganti_password(username):
     old_password = input("password lama : ")
     if bcrypt.checkpw(old_password.encode(), password.encode()):
         new_password = input("password baru : ")
-        hashed_new = bcrypt.hashpw(new_password.encode(), bcrypt.gensalt())
+        hashed_new = bcrypt.hashpw(new_password.encode(), bcrypt.gensalt()).decode()
         confirm = input("Apakah yakin ingin mengganti password? (y/n): ").strip().lower()
         if confirm == "y":
             database.update("users", "password", "username", hashed_new, username)

@@ -1,6 +1,5 @@
-from author.login import login
-from author.register import register
-import bcrypt
+from auth.login import login
+from auth.register import register
 
 def main():
     print("1. login")

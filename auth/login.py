@@ -12,7 +12,7 @@ def login():
         password = input("Masukkan password: ")
         hasil = database.select("users", "username", username)
         if hasil:
-            stored_hash = hasil['password']
+            stored_hash = hasil["password"]
             if bcrypt.checkpw(password.encode(), stored_hash.encode()):
                 database.update("users", "last_login", "username", datetime.now(), username)
                 if hasil['role'] == 'admin':

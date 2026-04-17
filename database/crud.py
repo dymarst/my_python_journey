@@ -1,8 +1,9 @@
 from database.db import connect_db
+from psycopg2.extras import RealDictCursor
 
 def _conn():
     conn = connect_db()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor(cursor_factory=RealDictCursor)
     return conn, cursor
 
 def insert(table, data: dict):
