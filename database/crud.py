@@ -35,6 +35,14 @@ def select_all(table):
     conn.close()
     return result
 
+def select_all2(table, key, value):
+    conn, cursor = _conn()
+    sql = f"SELECT * FROM {table} WHERE {key} = %s"
+    cursor.execute(sql, (value,))
+    result = cursor.fetchall()
+    conn.close()
+    return result
+
 def delete(table, key, value):
     conn, cursor = _conn()
     sql = f"DELETE FROM {table} WHERE {key} = %s"
