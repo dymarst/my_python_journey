@@ -9,6 +9,6 @@ def all_data():
     for user in users:
         print(f"\nID       : {user['id']}")
         print(f"Username : {user['username']}")
-        print(f"No HP    : {user['telepon'] if user['telepon'] else 'Tidak ada'}")
-        print(f"Hobi     : {user['hobi'] if user['hobi'] else 'Tidak ada'}")
+        print(f"No HP    : {user['telepon']}")
+        print(f"Hobi     : {user['hobi']}")
         print(f"last login : {user['last_login']}")

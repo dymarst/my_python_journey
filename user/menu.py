@@ -1,4 +1,4 @@
-from user.profile import lihat_data, isi_telepon, isi_hobi, del_akun, ganti_password
+from user.profile import lihat_data, set_number_phone, set_user_hobby, del_akun, ganti_password
 from user.user_questions import ask, cek_pertanyaan
 
 def menu_user(username):
@@ -17,9 +17,9 @@ def menu_user(username):
         if chose == "1":
             lihat_data(username)
         elif chose == "2":
-            isi_telepon(username)
+            set_number_phone(username)
         elif chose == "3":
-            isi_hobi(username)
+            set_user_hobby(username)
         elif chose == "4":
             del_akun(username)
             break

@@ -5,18 +5,18 @@ def lihat_data(username):
     user = database.select("users", "username", username)
 
     print(f"\nUsername : {user['username']}")
-    print(f"No HP    : {user['telepon'] if user['telepon'] else 'Tidak ada'}")
-    print(f"Hobi     : {user['hobi'] if user['hobi'] else 'Tidak ada'}")
+    print(f"Number Phone    : {user['number_phone']}")
+    print(f"Hobby     : {user['hobby']}")
 
-def isi_telepon(username):
-    telepon = input("Masukkan No HP: ").strip()
-    database.update("users", "telepon", "username", telepon, username)
-    print(f"berhasil menambahkan nomer telepon {telepon}")
+def set_number_phone(username):
+    number_phone = input("Masukkan No HP: ").strip()
+    database.update("users", "number_phone", "username", number_phone, username)
+    print(f"berhasil menambahkan nomer nomer telepon {number_phone}")
 
-def isi_hobi(username):
-    hobi = input("Masukkan HOBI: ").strip()
-    database.update("users", "hobi", "username", hobi, username)
-    print(f"berhasil menambahkan hobi {hobi}")
+def set_user_hobby(username):
+    hobby = input("Masukkan hobby: ").strip()
+    database.update("users", "hobby", "username", hobby, username)
+    print(f"berhasil menambahkan hobi {hobby}")
 
 def del_akun(username):
     confirm = input("Apakah yakin ingin menghapus akun? (y/n): ").strip().lower()

@@ -50,9 +50,9 @@ def delete(table, key, value):
     conn.commit()
     conn.close()
 
-def update(table, test, key, value1, value2):
+def update(table, column, key, value1, value2):
     conn, cursor = _conn()
-    sql = f"UPDATE {table} set {test} = %s WHERE {key} = %s"
+    sql = f"UPDATE {table} set {column} = %s WHERE {key} = %s"
     cursor.execute(sql, (value1, value2))
     conn.commit()
     conn.close()

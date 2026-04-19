@@ -10,13 +10,13 @@ def show_questions():
     for pertanyaan in pertanyaan_all:
         print(f"\nID : {pertanyaan['id']}")
         print(f"Username : {pertanyaan['username']}")
-        print(f"Pertanyaan : {pertanyaan['pertanyaan']}")
-        print(f"Jawaban : {pertanyaan['jawaban'] if pertanyaan['jawaban'] else 'belum di jawab'}")
+        print(f"Pertanyaan : {pertanyaan['question']}")
+        print(f"Jawaban : {pertanyaan['answer']}")
 
 def answer():
     id_pertanyaan = input("masukan id pertanyaan : ")
-    jawaban = input("masukan jawaban : ")
-    database.update("ask", "jawaban", "username", jawaban, id_pertanyaan)
+    answer = input("masukan jawaban : ")
+    database.update("ask", "answer", "username", answer, id_pertanyaan)
     print(f"berhasil jawab pertanyaan id : {id_pertanyaan}")
 
 def del_questions():
