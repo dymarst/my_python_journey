@@ -1,6 +1,6 @@
 # Command Line Interface
 
-Aplikasi chatbot sederhana ini dibuat dengan menggunakan bahasa pemrograman Python. Aplikasi ini memiliki fitur untuk membuat akun, login, melihat profil, mengisi nomor telepon, mengisi hobi, dan mengajukan pertanyaan kepada admin. Admin dapat melihat semua pertanyaan yang diajukan oleh pengguna dan memberikan jawaban.
+command sederhana ini dibuat dengan menggunakan bahasa pemrograman Python. Aplikasi ini memiliki fitur untuk membuat akun, login, melihat profil, mengisi nomor telepon, mengisi hobi, dan mengajukan pertanyaan kepada admin. Admin dapat melihat semua pertanyaan yang diajukan oleh pengguna dan memberikan jawaban.
 ## Fitur
 - Membuat akun dengan username dan password
 - Login dengan username dan password 
